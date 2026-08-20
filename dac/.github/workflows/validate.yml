@@ -1,0 +1,41 @@
+name: Validate Detections
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Lint and test detection rules
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Structural validation: YAML syntax, required Sigma fields, duplicate IDs,
+      # malformed ATT&CK tags, unknown modifiers, dangling references.
+      - name: Sigma rule validation
+        run: sigma check detections/
+
+      # Conversion smoke test: every rule must survive the Wazuh pipeline.
+      # Catches field names the pipeline does not map and unsupported constructs.
+      - name: Conversion smoke test
+        run: sigma convert -t sqlite -p pipelines/wazuh_windows.yml detections/
+
+      # Behavioural tests: does the rule still catch its attack, and stay quiet
+      # on benign traffic?
+      - name: Detection unit tests
+        run: pytest tests/ -v

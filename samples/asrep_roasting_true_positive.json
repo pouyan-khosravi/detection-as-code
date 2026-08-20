@@ -1,0 +1,23 @@
+[
+  {
+    "agent": { "id": "001", "name": "NC-DC01" },
+    "data": {
+      "win": {
+        "system": {
+          "channel": "Security",
+          "computer": "NC-DC01.naturacorp.lan",
+          "eventID": "4768",
+          "providerName": "Microsoft-Windows-Security-Auditing"
+        },
+        "eventdata": {
+          "targetUserName": "svc_backup",
+          "targetDomainName": "NATURACORP.LAN",
+          "ipAddress": "::ffff:192.168.20.55",
+          "preAuthType": "0",
+          "ticketEncryptionType": "0x17",
+          "status": "0x0"
+        }
+      }
+    }
+  }
+]

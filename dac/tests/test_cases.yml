@@ -1,0 +1,29 @@
+# Each entry pairs one detection rule with one sample file and the number of
+# events in that sample the rule is expected to match.
+#
+# Convention: every rule gets at least one true-positive case (expected >= 1)
+# and one benign case (expected 0). Add a new pair here whenever you add a rule.
+
+- rule: detections/windows/credential_access/asrep_roasting.yml
+  sample: samples/asrep_roasting_true_positive.json
+  expected_matches: 1
+
+- rule: detections/windows/credential_access/asrep_roasting.yml
+  sample: samples/asrep_roasting_benign.json
+  expected_matches: 0
+
+- rule: detections/windows/credential_access/dcsync.yml
+  sample: samples/dcsync_true_positive.json
+  expected_matches: 1
+
+- rule: detections/windows/credential_access/dcsync.yml
+  sample: samples/dcsync_benign.json
+  expected_matches: 0
+
+- rule: detections/windows/credential_access/kerberoasting_rc4.yml
+  sample: samples/kerberoasting_rc4_true_positive.json
+  expected_matches: 1
+
+- rule: detections/windows/credential_access/kerberoasting_rc4.yml
+  sample: samples/kerberoasting_rc4_benign.json
+  expected_matches: 0

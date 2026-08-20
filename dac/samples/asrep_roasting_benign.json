@@ -1,0 +1,44 @@
+[
+  {
+    "agent": { "id": "001", "name": "NC-DC01" },
+    "data": {
+      "win": {
+        "system": {
+          "channel": "Security",
+          "computer": "NC-DC01.naturacorp.lan",
+          "eventID": "4768",
+          "providerName": "Microsoft-Windows-Security-Auditing"
+        },
+        "eventdata": {
+          "targetUserName": "p.khosravi",
+          "targetDomainName": "NATURACORP.LAN",
+          "ipAddress": "::ffff:192.168.20.42",
+          "preAuthType": "2",
+          "ticketEncryptionType": "0x12",
+          "status": "0x0"
+        }
+      }
+    }
+  },
+  {
+    "agent": { "id": "001", "name": "NC-DC01" },
+    "data": {
+      "win": {
+        "system": {
+          "channel": "Security",
+          "computer": "NC-DC01.naturacorp.lan",
+          "eventID": "4768",
+          "providerName": "Microsoft-Windows-Security-Auditing"
+        },
+        "eventdata": {
+          "targetUserName": "NC-RDS01$",
+          "targetDomainName": "NATURACORP.LAN",
+          "ipAddress": "::ffff:192.168.20.31",
+          "preAuthType": "0",
+          "ticketEncryptionType": "0x12",
+          "status": "0x0"
+        }
+      }
+    }
+  }
+]

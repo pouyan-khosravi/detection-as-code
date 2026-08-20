@@ -1,0 +1,7 @@
+# Pinned so CI and your local VM resolve identically.
+sigma-cli==3.1.0
+pySigma==1.5.0
+pySigma-backend-sqlite==1.2.2
+pySigma-backend-opensearch==2.0.3
+pytest==9.1.1
+PyYAML==6.0.3

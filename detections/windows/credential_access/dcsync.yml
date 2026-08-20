@@ -1,0 +1,36 @@
+title: DCSync - Directory Replication Rights Abused by Non-DC Account
+id: 3a5b9e7c-2d41-4c88-91f5-c4e3b0a7d112
+status: experimental
+description: |
+    Detects a request for the DS-Replication-Get-Changes extended rights against the
+    domain object from a principal that is not a domain controller. This is the core
+    primitive behind DCSync, which lets an attacker pull password hashes for any
+    account (including krbtgt) without ever touching the DC's disk.
+references:
+    - https://attack.mitre.org/techniques/T1003/006/
+author: Pouyan Khosravi
+date: 2026-08-02
+tags:
+    - attack.credential-access
+    - attack.t1003.006
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4662
+        AccessMask: '0x100'
+        Properties|contains:
+            - '1131f6aa-9c07-11d1-f79f-00c04fc2dcd2'
+            - '1131f6ad-9c07-11d1-f79f-00c04fc2dcd2'
+            - '89e95b76-444d-4c62-991a-0facbeda640c'
+    filter_machine_account:
+        SubjectUserName|endswith: '$'
+    filter_dirsync:
+        SubjectUserName|startswith: 'MSOL_'
+    condition: selection and not 1 of filter_*
+falsepositives:
+    - Entra Connect / Azure AD Connect sync accounts, usually named MSOL_*
+    - Backup or directory-sync products deliberately granted replication rights
+    - Promotion of a new domain controller
+level: critical
