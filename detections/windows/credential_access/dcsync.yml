@@ -28,7 +28,7 @@ detection:
         SubjectUserName|endswith: '$'
     filter_dirsync:
         SubjectUserName|startswith: 'MSOL_'
-    condition: selection and not 1 of filter_*
+    condition: selection
 falsepositives:
     - Entra Connect / Azure AD Connect sync accounts, usually named MSOL_*
     - Backup or directory-sync products deliberately granted replication rights
