@@ -3,6 +3,8 @@
 Version-controlled, unit-tested Sigma detection rules for a Wazuh-based home SOC,
 with a CI pipeline that blocks any rule change which breaks detection.
 
+**[Full project writeup →](docs/PORTFOLIO.md)** — architecture, detection coverage, and a demonstrated regression catch.
+
 The rules cover credential-access attacks against Active Directory, validated
 against real alert telemetry from a lab running a Windows Server 2022 domain
 controller, Sysmon, and a Wazuh manager.
